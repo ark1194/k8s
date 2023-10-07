@@ -1,0 +1,36 @@
+access - AKIA4SIE4K73LB7GKFHN
+
+secret - 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
+
+//   bucket   //
+
+===================================================
+
+
+Suggestions:
+ * list clusters with: kops get cluster
+ * edit this cluster with: kops edit cluster akash.k8s.local
+ * edit your node instance group: kops edit ig --name=akash.k8s.local nodes-us-east-2a
+ * edit your control-plane instance group: kops edit ig --name=akash.k8s.local control-plane-us-east-2a
+
+Finally configure your cluster with: kops update cluster --name akash.k8s.local --yes --admin
+
+====================================================
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: multicontainer-pod
+spec:
+  containers:
+  - name: httpd-container
+    image: httpd
+    ports:
+    - containerPort: 80
+  containers:
+  - name: nginx-container
+    image: nginx:1.14.2
+    ports:
+    - containerPort: 80
+
+==================================================
